@@ -9,6 +9,7 @@ import com.sultan.composition.R
 import com.sultan.composition.databinding.FragmentWelcomeBinding
 
 class WelcomeFragment : Fragment() {
+
     private var _binding: FragmentWelcomeBinding? = null
     private val binding: FragmentWelcomeBinding
         get() = _binding ?: throw RuntimeException("FragmentWelcomeBinding == null")
@@ -23,15 +24,15 @@ class WelcomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonUnderstand.setOnClickListener{
+        binding.buttonUnderstand.setOnClickListener {
             launchChooseLevelFragment()
         }
     }
 
     private fun launchChooseLevelFragment() {
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.main_container, ChooseLevelFragment().newInstance())
-            .addToBackStack(null)
+            .replace(R.id.main_container, ChooseLevelFragment.newInstance())
+            .addToBackStack(ChooseLevelFragment.NAME)
             .commit()
     }
 
@@ -39,5 +40,4 @@ class WelcomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
