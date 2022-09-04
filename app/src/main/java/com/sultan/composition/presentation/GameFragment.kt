@@ -11,11 +11,6 @@ import com.sultan.composition.domain.entity.GameResult
 import com.sultan.composition.domain.entity.GameSettings
 import com.sultan.composition.domain.entity.Level
 
-private lateinit var level: Level
-private var _binding: FragmentGameBinding? = null
-private val binding: FragmentGameBinding
-    get() = _binding ?: throw RuntimeException("FragmentGameBinding == null")
-
 
 class GameFragment : Fragment() {
 
@@ -58,7 +53,9 @@ class GameFragment : Fragment() {
     }
 
     private fun parseArgs() {
-        level = requireArguments().getSerializable(KEY_LEVEL) as Level
+        requireArguments().getParcelable<Level>(KEY_LEVEL)?.let {
+            level = it
+        }
     }
 
     private fun launchGameFinishedFragment(gameResult: GameResult) {
@@ -76,7 +73,7 @@ class GameFragment : Fragment() {
         fun newInstance(level: Level): GameFragment {
             return GameFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_LEVEL, level)
+                    putParcelable(KEY_LEVEL, level)
                 }
             }
         }
