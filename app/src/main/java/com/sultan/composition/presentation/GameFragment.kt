@@ -1,9 +1,11 @@
 package com.sultan.composition.presentation
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.sultan.composition.R
 import com.sultan.composition.databinding.FragmentGameBinding
@@ -15,6 +17,9 @@ import com.sultan.composition.domain.entity.Level
 class GameFragment : Fragment() {
 
     private lateinit var level: Level
+
+    private var timer: CountDownTimer? = null
+
 
     private var _binding: FragmentGameBinding? = null
     private val binding: FragmentGameBinding
@@ -45,7 +50,26 @@ class GameFragment : Fragment() {
                 )
             )
         }
+        binding.tvOption2.setOnClickListener{
+            startCountDownTimer(20000)
+        }
+
     }
+private fun startCountDownTimer(timeMills: Long){
+    timer?.cancel()
+    timer = object : CountDownTimer(timeMills , 1){
+        override fun onTick(timeM: Long) {
+            binding.tvTimer.text =  timeM.toString()
+        }
+
+        override fun onFinish() {
+            binding.tvTimer.text = R.string.game_over.toString()
+        }
+
+    }.start()
+}
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
