@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.*
 import com.sultan.composition.R
 import com.sultan.composition.databinding.FragmentGameBinding
 import com.sultan.composition.domain.entity.GameResult
