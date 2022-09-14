@@ -26,7 +26,11 @@
         android:id="@+id/gameFinishedFragment"
         android:name="com.sultan.composition.presentation.GameFinishedFragment"
         android:label="fragment_game_finished"
-        tools:layout="@layout/fragment_game_finished" />
+        tools:layout="@layout/fragment_game_finished" >
+        <argument
+            android:name="gameResult"
+            app:argType="com.sultan.composition.domain.entity.GameResult" />
+    </fragment>
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.sultan.composition.presentation.GameFragment"
@@ -37,5 +41,8 @@
             app:destination="@id/gameFinishedFragment"
             app:popUpTo="@id/gameFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="level"
+            app:argType="com.sultan.composition.domain.entity.Level" />
     </fragment>
 </navigation>
